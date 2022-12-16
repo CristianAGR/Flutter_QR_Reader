@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/ui_provider.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Obtener el selected menu opt
+    final uiProvider = Provider.of<UiProvider>(context);
+    final selectedIndex = uiProvider.selectedMenuOpt;
     return BottomNavigationBar(
-      currentIndex: 1,
+      onTap: (int i) => uiProvider.selectedMenuOpt = i,
+      currentIndex: selectedIndex,
       elevation: 0,
       items: const [
         BottomNavigationBarItem(
