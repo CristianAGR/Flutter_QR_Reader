@@ -7,19 +7,19 @@ String scanModelToJson(ScanModel data) => json.encode(data.toJson());
 
 class ScanModel {
     ScanModel({
-        required this.id,
-        required this.tipo,
+        this.id,
+        this.tipo,
         required this.valor,
     }){
-      if (tipo.contains('http')) {
+      if (valor.contains('http')) {
         tipo = 'http';
       } else {
         tipo = 'geo';
       }
     }
 
-    int id;
-    String tipo;
+    int? id;
+    String? tipo;
     String valor;
 
     // regresa una nueva instancia de la clase
