@@ -44,7 +44,6 @@ borrarTodos() async {
 
 borrarScanPorId(int id ) async {
   await DBProvider.db.deleteScan(id);
-  cargarScanPorTipo(tipoSeleccionado);
 }
 
 
