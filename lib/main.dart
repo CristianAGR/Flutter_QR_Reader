@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         initialRoute: 'home',
         routes: {
           'home': (_) => const HomePage(),
-          'mapa': (_) => const MapaPage()
+          'mapa': (_) =>  MapaPage()
         },
         theme: ThemeData(
           primaryColor: Colors.red,
