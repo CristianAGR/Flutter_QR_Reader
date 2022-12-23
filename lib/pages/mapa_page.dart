@@ -6,10 +6,17 @@
 
  import '../models/scan_model.dart';
 
- class MapaPage extends StatelessWidget {
+ class MapaPage extends StatefulWidget {
       MapaPage({Key? key}) : super(key: key);
-  
+
+  @override
+  State<MapaPage> createState() => _MapaPageState();
+}
+
+class _MapaPageState extends State<MapaPage> {
+
    final Completer<GoogleMapController> _controller = Completer();
+   MapType mapType = MapType.normal;
 
    @override
    Widget build(BuildContext context) {
@@ -32,16 +39,38 @@
      return Scaffold(
        appBar: AppBar(
          title: const Text('Mapa'),
+         actions: [
+          IconButton(
+            onPressed: () async {
+              final GoogleMapController controller = await _controller.future;
+              controller.animateCamera(CameraUpdate.newCameraPosition(puntoInicial));
+            }, 
+            icon: const Icon(Icons.location_searching)
+            )
+         ],
        ),
        body: GoogleMap(
         myLocationButtonEnabled: false,
-         mapType: MapType.normal,
+         mapType: mapType,
          markers: markers,
          initialCameraPosition: puntoInicial,
          onMapCreated: (GoogleMapController controller) {
            _controller.complete(controller);
          },
        ),
+       floatingActionButton:  FloatingActionButton(
+        onPressed: () {
+          
+          if (mapType == MapType.normal ) {
+            mapType = MapType.satellite;
+          } else {
+            mapType = MapType.normal;
+          }
+
+          setState(() {});
+        },
+        child: const Icon(Icons.layers),
+        ),
      );
    }
- }
+}
