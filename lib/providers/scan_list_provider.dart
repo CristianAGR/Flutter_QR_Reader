@@ -21,6 +21,8 @@ nuevoScan( String valor) async {
     scans.add(nuevoScan);
     notifyListeners();
   }
+
+  return nuevoScan;
 }
 
 cargarScans() async {
